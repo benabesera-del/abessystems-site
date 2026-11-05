@@ -181,6 +181,28 @@ input[type="range"]:focus-visible { outline-offset: 0; }
 .step h3 { max-width: 18ch; }
 .step > p:last-child { margin-top: 14px; max-width: 34ch; }
 
+/* Offer: the first fixed-price system */
+.offer { padding: var(--section) 0; }
+.offer__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
+.offer__price { display: grid; justify-items: start; }
+.offer h2 { font-size: var(--t-h2); max-width: 10ch; }
+.offer__name { margin-top: clamp(32px, 4vw, 56px); font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.015em; color: var(--on-field-2); }
+.offer__amount { margin-top: 8px; font-size: clamp(1.25rem, 1rem + .6vw, 1.6rem); font-weight: 600; }
+.offer__amount span { display: block; font-size: clamp(4.5rem, 2rem + 9vw, 10rem); font-weight: 700; letter-spacing: -0.05em; line-height: .9; color: var(--accent); font-variant-numeric: tabular-nums; }
+.offer__monthly { margin-top: 6px; font-size: clamp(1.25rem, 1rem + .6vw, 1.6rem); font-weight: 600; color: var(--on-field-2); }
+.offer__lead { margin-top: 28px; max-width: 44ch; color: var(--on-field); }
+.offer__price .btn { margin-top: 32px; }
+.offer__detail { background: var(--field-2); border-radius: 6px; padding: clamp(24px, 4vw, 56px); }
+.offer__detail h3 + .offer__list { margin-top: 18px; }
+.offer__list + h3 { margin-top: clamp(36px, 4vw, 52px); }
+.offer__list { display: grid; gap: 14px; }
+.offer__list li { position: relative; padding-left: 30px; color: var(--on-field); max-width: 52ch; }
+.offer__list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 14px; height: 6px; border-left: 3px solid var(--accent); border-bottom: 3px solid var(--accent); transform: translateY(-50%) rotate(-45deg); }
+.offer__note { margin-top: clamp(32px, 4vw, 48px); color: var(--on-field-2); font-size: var(--t-small); }
+@media (max-width: 960px) {
+  .offer__grid { grid-template-columns: 1fr; }
+}
+
 /* Companies we work with: logo strip.
    Tiles share the row; one logo fills it as a single band, more logos split it and wrap. */
 .clients { padding: clamp(80px, 9vw, 144px) 0; }
