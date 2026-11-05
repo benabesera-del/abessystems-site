@@ -112,14 +112,21 @@
       btn.disabled = true;
       btn.textContent = "Sending…";
 
-      /* [OWNER: connect form]
-         No backend is connected yet, so nothing is sent anywhere. Replace the setTimeout below with a real
-         request to your form service, for example:
-           fetch("https://formspree.io/f/YOUR_ID", { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-             .then(function (res) { if (!res.ok) throw new Error(); showSuccess(); })
-             .catch(function () { btn.disabled = false; btn.textContent = "Send my message"; alert("Sorry, that didn't send. Please email us instead."); });
-      */
-      setTimeout(showSuccess, 500);
+      // Submissions go to Formspree, which emails them to ben@abessystems.com.
+      var sendErr = document.getElementById("form-send-err");
+      sendErr.hidden = true;
+      var data = new FormData(form);
+      data.delete("website");
+      data.append("_subject", "New website enquiry from " + (data.get("business") || data.get("name")));
+      data.append("_replyto", data.get("email"));
+      fetch("https://formspree.io/f/moeebyba", { method: "POST", body: data, headers: { Accept: "application/json" } })
+        .then(function (res) { if (!res.ok) throw new Error("status " + res.status); showSuccess(); })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = "Send my message";
+          sendErr.hidden = false;
+          sendErr.focus();
+        });
     });
 
     var showSuccess = function () {

@@ -347,3 +347,5 @@ input[type="range"]:focus-visible { outline-offset: 0; }
   .wordmark { font-size: 1.15rem; }
   .nav__toggle { padding: 0 12px; }
 }
+.form__error { margin-top: 12px; }
+.form__error a { color: inherit; text-decoration: underline; }

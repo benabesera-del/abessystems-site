@@ -328,8 +328,7 @@
         </div>
 
         <div class="contact__panel">
-          <!-- [OWNER: connect form] This form has no backend yet. script.js shows a success message only;
-               submissions are NOT sent anywhere until you connect it (e.g. Formspree, a Supabase table or your email service). -->
+          <!-- Form posts to Formspree (https://formspree.io/f/moeebyba) via script.js; submissions arrive at ben@abessystems.com. -->
           <form class="form reveal" id="contact-form" novalidate>
             <div class="field-row">
               <label for="f-name">Your name</label>
@@ -356,6 +355,7 @@
               <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
             </div>
             <button class="btn" type="submit">Send my message</button>
+            <p class="err form__error" id="form-send-err" role="alert" tabindex="-1" hidden>Sorry, that didn't send. Please email us at <a href="mailto:ben@abessystems.com">ben@abessystems.com</a> instead.</p>
             <p class="form__privacy">We'll only use this to reply to you.</p>
           </form>
           <div class="form-success" id="form-success" tabindex="-1" role="status" hidden>
