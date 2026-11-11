@@ -103,6 +103,16 @@
       rules.forEach(function (rule) {
         if (!validate(rule) && !firstBad) firstBad = document.getElementById(rule.id);
       });
+      // Texting consent needs a number to text.
+      var phone = document.getElementById("f-phone"), sms = document.getElementById("f-sms");
+      if (phone && sms) {
+        var digits = phone.value.replace(/\D/g, "");
+        var perr = document.getElementById("f-phone-err");
+        if ((sms.checked && digits.length < 10) || (digits.length > 0 && digits.length < 10)) {
+          setError(phone, perr, "Please enter a 10-digit mobile number, or untick the text message box.");
+          if (!firstBad) firstBad = phone;
+        } else { setError(phone, perr, ""); }
+      }
       if (firstBad) { firstBad.focus(); return; }
 
       // Honeypot: bots fill the hidden field; quietly ignore them.
