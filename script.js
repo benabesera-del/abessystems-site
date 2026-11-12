@@ -35,28 +35,31 @@
     });
   }
 
-  /* Week calculator: uses only the visitor's own numbers */
+  /* Missed-job calculator: uses only the visitor's own numbers */
   var calc = document.getElementById("calc");
   if (calc) {
     var ranges = calc.querySelectorAll('input[type="range"]');
-    var days = document.getElementById("p-days");
-    var hoursOut = document.getElementById("calc-hours");
+    var moneyOut = document.getElementById("calc-money");
+    var money = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+    var show = function (r) {
+      var v = Number(r.value);
+      var kind = r.getAttribute("data-kind");
+      if (kind === "money") return money(v);
+      if (kind === "percent") return v + "%";
+      return v.toString();
+    };
     var update = function () {
-      var perDay = 0;
+      var vals = {};
       ranges.forEach(function (r) {
-        var v = Number(r.value);
-        perDay += v;
+        var min = Number(r.min), max = Number(r.max), v = Number(r.value);
+        vals[r.id] = v;
         var out = calc.querySelector('[data-for="' + r.id + '"]');
-        if (out) out.textContent = v + " min";
-        r.style.setProperty("--fill", (v / Number(r.max)) * 100 + "%");
+        if (out) out.textContent = show(r);
+        r.style.setProperty("--fill", ((v - min) / (max - min)) * 100 + "%");
       });
-      var hours = (perDay * Number(days.value)) / 60;
-      hoursOut.textContent = hours >= 10 ? Math.round(hours).toString() : (Math.round(hours * 10) / 10).toString();
-      if (Math.round(hours * 10) / 10 === 1) hoursOut.parentNode.lastChild.textContent = " hour a week";
-      else hoursOut.parentNode.lastChild.textContent = " hours a week";
+      moneyOut.textContent = money(vals["p-missed"] * (vals["p-win"] / 100) * vals["p-job"]);
     };
     ranges.forEach(function (r) { r.addEventListener("input", update); });
-    days.addEventListener("change", update);
     update();
   }
 
@@ -68,7 +71,7 @@
       { id: "f-name", msg: "Please tell us your name." },
       { id: "f-email", msg: "Please enter your email so we can reply.", email: true },
       { id: "f-biz", msg: "Please add your business name." },
-      { id: "f-time", msg: "Please tell us a little about what takes up your time." }
+      { id: "f-time", msg: "Please tell us a little about how customers contact you." }
     ];
     var emailOk = function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); };
     var setError = function (input, err, text) {
