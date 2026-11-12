@@ -1,16 +1,16 @@
 /* ABESsystems: tokens */
 :root {
-  --ground: #F4F3EE;
-  --tone: #E7E5DC;
-  --tone-2: #DCDACF;
-  --ink: #16211B;
-  --ink-2: #44514A;
-  --field: #1F3B30;
-  --field-2: #28493C;
-  --on-field: #F4F3EE;
-  --on-field-2: #C9D4CC;
-  --accent: #F4B740;
-  --accent-press: #E3A42A;
+  --ground: #F1F3F4;
+  --tone: #E2E6E9;
+  --tone-2: #D3D9DD;
+  --ink: #111A22;
+  --ink-2: #44515C;
+  --field: #14283A;
+  --field-2: #1E384F;
+  --on-field: #F1F3F4;
+  --on-field-2: #C4CFD8;
+  --accent: #FF7A1A;
+  --accent-press: #E8650A;
 
   --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --t-body: 1.125rem;
@@ -105,7 +105,7 @@ figure { margin: 0; }
 .hero__actions { margin-top: 36px; display: grid; gap: 16px; justify-items: start; }
 .hero__note { font-size: var(--t-small); color: var(--ink-2); max-width: 34ch; }
 .hero__media { overflow: hidden; border-radius: 6px; aspect-ratio: 4 / 4.4; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 46% 45%; }
 
 /* Week / problems */
 .week { padding: var(--section) 0; }
